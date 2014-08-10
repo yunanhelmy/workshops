@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
+  before_action :check_ownership, only: [:edit, :update]
 
   expose(:category)
-  expose(:products, ancestor: :category)
-  expose(:product, attributes: :product_params)
+  expose(:products, ancestor: :category) {category.products}
+  expose(:product)
   expose(:review) { Review.new }
   expose_decorated(:reviews, ancestor: :product)
 
@@ -16,6 +17,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    
   end
 
   def create
@@ -46,5 +48,12 @@ class ProductsController < ApplicationController
   private
     def product_params
       params.require(:product).permit(:title, :description, :price, :category_id)
+    end
+
+    def check_ownership
+      if product.user != current_user
+        flash[:error] = "You are not allowed to edit this product."
+        redirect_to category_product_url(category, product)
+      end
     end
 end
