@@ -9,4 +9,6 @@
     = javascript_include_tag 'application'
 
   %body
+    = link_to 'Logout', destroy_user_session_path, method: :delete if current_user.present?
+    = link_to 'Set To Admin', admin_set_to_path, method: :post unless current_user.admin?
     = yield

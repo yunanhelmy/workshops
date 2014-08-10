@@ -47,11 +47,12 @@ class ProductsController < ApplicationController
 
   private
     def product_params
-      params.require(:product).permit(:title, :description, :price, :category_id)
+      params[:product][:user_id] = current_user.id
+      params.require(:product).permit(:title, :description, :price, :category_id, :user_id)
     end
 
     def check_ownership
-      if product.user != current_user
+      if product.user_id != current_user.id
         flash[:error] = "You are not allowed to edit this product."
         redirect_to category_product_url(category, product)
       end
