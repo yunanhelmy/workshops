@@ -5,7 +5,7 @@ describe ProductsController do
 
   let(:category) { create(:category) }
 
-  let(:valid_attributes) { { "title" => "MyString", "category_id" => category.id } }
+  let(:valid_attributes) { { "title" => "MyString", "category_id" => category.id, "description" => "My Description", "price" => 500.00 } }
 
   let(:valid_session) { {} }
 

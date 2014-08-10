@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
 
   expose(:category)
-  expose(:products)
-  expose(:product)
+  expose(:products, ancestor: :category)
+  expose(:product, attributes: :product_params)
   expose(:review) { Review.new }
   expose_decorated(:reviews, ancestor: :product)
 
