@@ -38,3 +38,9 @@ gem 'jquery-rails'
 gem 'rmagick'
 gem 'carrierwave'
 gem 'simple_enum'
+
+gem 'rails_12factor', group: :production
+
+gem 'unicorn'
+
+ruby "2.1.2"
