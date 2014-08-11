@@ -1,5 +1,10 @@
-%h1 New product
+.panel.panel-default
+  .row
+    .col-md-6.col-sm-6.col-lg-6.title
+      %h1 New product
+    .col-md-6.col-sm-6.col-lg-6.text-right
+      = link_to 'Back', category_products_path, class: "btn btn-info", role: "button"
+  .row.content-main
+    .col-md-6.col-sm-6.col-lg-6
+      = render 'form'
 
-= render 'form'
-
-= link_to 'Back', category_products_path

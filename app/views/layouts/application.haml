@@ -9,6 +9,31 @@
     = javascript_include_tag 'application'
 
   %body
-    = link_to 'Logout', destroy_user_session_path, method: :delete if current_user.present?
-    = link_to 'Set To Admin', admin_set_to_path, method: :post unless current_user.admin?
-    = yield
+    .navbar.navbar-default{role: "navigation"}
+      .container.header-workshop
+        .navbar-header
+          %button.navbar-toggle{:'data-toggle' => "collapse",  :'data-target' => '.navbar-collapse'}
+          %span.sr-only Toggle
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+          %a.brand{:href => "/"} 
+            %h2
+              %span.glyphicon.glyphicon-eye-open 
+              &nbsp;&nbsp;Netguru Workshop
+        .navbar-collapse.collapse
+          %ul.nav.navbar-nav.navbar-right.menu
+            %li
+              - if current_user.present? 
+                = link_to(raw('<span class="glyphicon glyphicon-lock"></span> Set To Admin'), admin_set_to_path, method: :post) unless current_user.admin?
+            %li
+              = link_to(raw('<span class="glyphicon glyphicon-ban-circle"></span> Logout'), destroy_user_session_path, method: :delete) if current_user.present?
+              = link_to(raw('<span class="glyphicon glyphicon-lock"></span> Login'), new_user_session_path) if current_user.nil?
+    #main{:role => "main"}
+      .container
+        .content
+          .row
+            .col-md-12.col-sm-12.col-lg-12
+              = yield
+              .footer_bottom_content
+                Netguru Workshop

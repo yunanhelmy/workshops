@@ -1,19 +1,27 @@
-%h1 Listing categories
-
-%table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
-
-  - categories.each do |category|
-    %tr
-      %td= category.name
-      %td= link_to 'Show', category
-      %td= link_to 'Edit', edit_category_path(category)
-      %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
-
+- if flash[:error].present?
+  #notice.alert.alert-danger.alert-dismissable
+    %button.close{type: "button", :'data-dismiss' => "alert", :'aria-hidden' => "true"} x
+    = flash[:error]
+.panel.panel-default
+  .row
+    .col-md-6.col-sm-6.col-lg-6.title
+      %h1 Listing categories
+    .col-md-6.col-sm-6.col-lg-6.text-right
+      = link_to 'New Category', new_category_path, class: "btn btn-info", role: "button"
+  .row.content-main
+    .col-md-6.col-sm-6.col-lg-6
+      %table.table.table-striped
+        %thead
+          %tr
+            %td Name
+            %td
+        %tbody
+          - categories.each do |category|
+            %tr
+              %td
+                = category.name
+              %td
+                = link_to 'Show', category, class: 'btn btn-default'
+                = link_to 'Edit', edit_category_path(category), class: "btn  btn-success"
+                = link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning"
 %br
-
-= link_to 'New Category', new_category_path

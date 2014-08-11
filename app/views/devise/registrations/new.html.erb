@@ -1,19 +1,25 @@
-<h2>Sign up</h2>
+<div class="row">
+  <div class="col-sm-4 col-lg-4 col-md-4">
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+  <h2>Sign up</h2>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :firstname, required: true %>
-    <%= f.input :lastname, required: true %>
-    <%= f.input :password, required: true %>
-    <%= f.input :password_confirmation, required: true %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-group">
+      <%= f.input :email, placeholder: "Email", required: true, autofocus: true, input_html: {class: "form-control form-control-inline"}, label: false %>
+      <%= f.input :firstname, placeholder: "First Name", required: true, input_html: {class: "form-control form-control-inline"}, label: false %>
+      <%= f.input :lastname, placeholder: "Last Name", required: true, input_html: {class: "form-control form-control-inline"}, label: false %>
+      <%= f.input :password, placeholder: "Password", required: true, input_html: {class: "form-control form-control-inline"}, label: false %>
+      <%= f.input :password_confirmation, placeholder: "Password Confirmation", required: true, input_html: {class: "form-control form-control-inline"}, label: false %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

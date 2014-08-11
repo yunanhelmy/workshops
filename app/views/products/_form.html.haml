@@ -1,19 +1,12 @@
 = form_for [category, product] do |f|
   - if product.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(product.errors.count, "error")} prohibited this product from being saved:"
+    #error_explanation.alert.alert-danger.alert-dismissable
+      %button.close{type: "button", :'data-dismiss' => "alert", :'aria-hidden' => "true"} x
       %ul
         - product.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :price
-    = f.text_field :price
-  .actions
-    = f.submit 'Save'
+  .form-group
+    = f.text_field :title, placeholder: "Title", class: "form-control form-control-inline"
+    = f.text_area :description, placeholder: "Description", class: "form-control form-control-inline"
+    = f.text_field :price, placeholder: "Price", class: "form-control form-control-inline"
+  = f.submit 'Save', class: "btn btn-primary"

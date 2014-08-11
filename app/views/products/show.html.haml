@@ -1,26 +1,39 @@
-%p#notice= notice
-%p#error= flash[:error]
+- if notice.present?
+  #notice.alert.alert-success.alert-dismissable
+    %button.close{type: "button", :'data-dismiss' => "alert", :'aria-hidden' => "true"} x
+    = notice
+- if flash[:error].present?
+  #notice.alert.alert-danger.alert-dismissable
+    %button.close{type: "button", :'data-dismiss' => "alert", :'aria-hidden' => "true"} x
+    = flash[:error]
 
-%p
-  %b Title:
-  = product.title
-%p
-  %b Description:
-  = product.description
-%p
-  %b Price:
-  = product.price
-
-%p
-  %b Category
-  = product.category.name
-
-%p
-  %b Reviews
-  = render 'reviews/form'
-
-= render reviews
-
-= link_to 'Edit', edit_category_product_path(category.id, product.id)
-\|
-= link_to 'Back', category_products_path
+.panel.panel-default
+  .row
+    .col-md-6.col-sm-6.col-lg-6.title
+      %h1= product.title
+    .col-md-6.col-sm-6.col-lg-6.text-right
+      = link_to 'Edit', edit_category_product_path(category.id, product.id), class: "btn btn-info", role: "button"
+      = link_to 'Back', category_products_path, class: "btn btn-info", role: "button"
+  .row.content-main
+    .col-md-6.col-sm-6.col-lg-6
+      %h3 New Rating
+      = render 'reviews/form'
+      %br
+      %table.table.table-striped
+        = render reviews
+    .col-md-6.col-sm-6.col-lg-6
+      %h3 Detail
+      %table.table.table-striped
+        %tbody
+          %tr
+            %td Title
+            %td= product.title
+          %tr
+            %td Description
+            %td= product.description
+          %tr
+            %td Price
+            %td= product.price
+          %tr
+            %td Category
+            %td= product.category.name if product.category_id.present?

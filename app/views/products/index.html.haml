@@ -1,23 +1,26 @@
-%h1 Listing products
-
-%table
-  %tr
-    %th Title
-    %th Description
-    %th Price
-    %th Average Rating
-    %th
-    %th
-    %th
-
-  - products.each do |product|
-    %tr
-      %td= product.title
-      %td= product.description
-      %td= product.price
-      %td= product.average_rating if product.reviews.size > 0
-      %td= link_to 'Show', category_product_path(product.category, product)
-      %td= link_to 'Edit', edit_category_product_path(product.category, product)
-      %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
-
+.panel.panel-default
+  .row
+    .col-md-6.col-sm-6.col-lg-6.title
+      %h1 Listing products
+  .row.content-main
+    .col-md-12.col-sm-12.col-lg-12
+      %table.table.table-striped
+        %thead
+          %tr
+            %td Title
+            %td Description
+            %td Price
+            %td Average Rating
+            %td
+        %tbody
+          - products.each do |product|
+            %tr
+              %td= product.title
+              %td= product.description
+              %td= product.price
+              %td= product.average_rating if product.reviews.size > 0
+              %td
+                = link_to 'Show', category_product_path(product.category, product), class: 'btn btn-default'
+                = link_to 'Edit', edit_category_product_path(product.category, product), class: "btn  btn-success"
+                = link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning"
 %br

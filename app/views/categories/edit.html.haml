@@ -1,7 +1,10 @@
-%h1 Editing category
-
-= render 'form'
-
-= link_to 'Show', category
-\|
-= link_to 'Back', categories_path
+.panel.panel-default
+  .row
+    .col-md-6.col-sm-6.col-lg-6.title
+      %h1 Editing category
+    .col-md-6.col-sm-6.col-lg-6.text-right
+      = link_to 'Show', category, class: "btn btn-info", role: "button"
+      = link_to 'Back', categories_path, class: "btn btn-info", role: "button"
+  .row.content-main
+    .col-md-6.col-sm-6.col-lg-6
+      = render 'form'

@@ -1,17 +1,22 @@
-%p#notice= notice
+- if notice.present?
+  #notice.alert.alert-success.alert-dismissable
+    %button.close{type: "button", :'data-dismiss' => "alert", :'aria-hidden' => "true"} x
+    = notice
 
-%p
-  %b Name:
-  = category.name
-
-%p
-  - category.products.each do |product|
-    = product.title
-
-%p
-  %h3 New product
-  = render 'products/form'
-
-= link_to 'Edit', edit_category_path(category)
-\|
-= link_to 'Back', categories_path
+.panel.panel-default
+  .row
+    .col-md-6.col-sm-6.col-lg-6.title
+      %h1= category.name
+    .col-md-6.col-sm-6.col-lg-6.text-right
+      = link_to 'Edit', edit_category_path(category), class: "btn btn-info", role: "button"
+      = link_to 'Back', categories_path, class: "btn btn-info", role: "button"
+  .row.content-main
+    .col-md-6.col-sm-6.col-lg-6
+      %h3 New product
+      = render 'products/form'
+    .col-md-6.col-sm-6.col-lg-6
+      - if category.products.size > 0
+        %h3 List of products :
+        %ol
+          - category.products.each do |product|
+            %li= product.title

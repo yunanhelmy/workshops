@@ -1,7 +1,8 @@
-$navbar-default-bg: #312312;
-$light-orange: #ff8c00;
-$navbar-default-color: $light-orange;
+$navbar-default-bg: #3f4a6f;
+$navbar-default-color: #fff;
+$navbar-default-link-color: #fff;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap/theme";
+@import "custom"
