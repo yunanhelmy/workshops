@@ -8,11 +8,12 @@ gem 'decent_exposure'
 gem 'decent_decoration'
 gem 'devise'
 gem 'simple_form'
-gem 'bootstrap-sass', '~> 3.1.1'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 
 gem 'haml-rails'
 
-gem 'sass-rails'
+gem 'sass-rails', '>= 3.2'
 gem 'coffee-rails'
 gem 'uglifier'
 
