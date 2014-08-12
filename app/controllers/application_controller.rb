@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
   def check_permission!
   	unless current_user.present? & current_user.admin?
   		flash[:error] = "You are not admin !"
-		# redirect_to new_user_session_path
-		redirect_to root_url
+		redirect_to new_user_session_path
+		# redirect_to root_url
   	end
   end
 
